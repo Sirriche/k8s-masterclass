@@ -33,6 +33,24 @@ metadata:
 spec:
   replicas: 1
   selector:
+  
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  rules:
+  - host: hello-world.info
+    http:
+      paths:
+      - path: /
+        pathType: Exact
+        backend:
+          service:
+            name: web
+            port:
+              number: 8080 
     matchLabels:
       app: nginx-official
   template:
